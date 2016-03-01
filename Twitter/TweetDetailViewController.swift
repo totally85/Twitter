@@ -42,6 +42,26 @@ class TweetDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func favoritePressed(sender: AnyObject)
+    {
+        tweet.favorited = true
+        tweet.favorite_count! += 1
+        favoriteCount.text = "\((tweet.favorite_count)!)"
+        favoriteButton.enabled = false
+    }
+    @IBAction func retweetPressed(sender: AnyObject)
+    {
+        tweet.retweeted = true
+        tweet.retweet_count! += 1
+        retweetCount.text = "\((tweet.retweet_count)!)"
+        retweetButton.enabled = false
+    }
+
+    
+    
+    
+    
+    
 
     /*
     // MARK: - Navigation
