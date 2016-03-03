@@ -20,7 +20,11 @@ class User: NSObject
     var profileImageUrl: NSURL?
     var tagline: String?
     var dictionary: NSDictionary
-
+    var backgroundPicURL: NSURL?
+    var statuses_count: Int?
+    var following: Int?
+    var followed_by: Int?
+    var screenName: String?
 
     
 
@@ -31,12 +35,29 @@ class User: NSObject
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
         tagline = dictionary["description"] as? String
+        statuses_count = ((dictionary["statuses_count"]!)as? Int)!
+        following = ((dictionary["friends_count"]!)as? Int)!
+        followed_by = ((dictionary["followers_count"]!)as? Int)!
+        screenName = dictionary["screen_name"] as? String
+        
+        print("\(dictionary)")
         
         let URLString = dictionary["profile_image_url_https"] as? String
         if URLString != nil {
             profileImageUrl = NSURL(string: URLString!)
         } else {
             profileImageUrl = nil
+        }
+        
+        let picString = dictionary["profile_background_image_url"] as? String
+        //print("image \(picString)")
+        if picString != nil
+        {
+            backgroundPicURL = NSURL(string: picString!)
+        }
+        else
+        {
+            backgroundPicURL = nil
         }
         
  

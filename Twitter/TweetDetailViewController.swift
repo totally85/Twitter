@@ -18,10 +18,11 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var retweetButton: UIButton!
     @IBOutlet weak var favoriteCount: UILabel!
     @IBOutlet weak var retweetCount: UILabel!
+    @IBOutlet weak var invisibleButton: UIButton!
     
     var tweet: Tweet!
-            
-
+    
+    var tweetID: Int = 0
 
     override func viewDidLoad()
     {
@@ -34,6 +35,7 @@ class TweetDetailViewController: UIViewController {
         nameLabel.text = tweet?.user!.name
         retweetCount.text = "\((tweet.retweet_count)!)"
         favoriteCount.text = "\((tweet.favorite_count)!)"
+        tweetID = (tweet.tweetID as? Int)!
 
     }
 
@@ -44,18 +46,38 @@ class TweetDetailViewController: UIViewController {
     
     @IBAction func favoritePressed(sender: AnyObject)
     {
-        tweet.favorited = true
-        tweet.favorite_count! += 1
-        favoriteCount.text = "\((tweet.favorite_count)!)"
-        favoriteButton.enabled = false
+        TwitterClient.sharedInstance.favTweet(Int(tweetID), params: nil, completion: {(error) -> () in
+            
+        self.tweet.favorited = true
+        self.tweet.favorite_count! += 1
+        self.favoriteCount.text = "\((self.tweet.favorite_count)!)"
+        self.favoriteButton.enabled = false
+            
+        })
     }
     @IBAction func retweetPressed(sender: AnyObject)
     {
-        tweet.retweeted = true
-        tweet.retweet_count! += 1
-        retweetCount.text = "\((tweet.retweet_count)!)"
-        retweetButton.enabled = false
+        TwitterClient.sharedInstance.retweet(Int(tweetID), params: nil, completion: {(error) -> () in
+            
+        self.tweet.retweeted = true
+        self.tweet.retweet_count! += 1
+        self.retweetCount.text = "\((self.tweet.retweet_count)!)"
+        self.retweetButton.enabled = false
+            
+        })
     }
+
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "profile"
+        {
+            let destinationViewController = segue.destinationViewController as! ProfilePageViewController
+            destinationViewController.tweet = tweet
+        }
+        
+    }
+
 
     
     

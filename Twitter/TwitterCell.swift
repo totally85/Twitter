@@ -19,6 +19,8 @@ class TwitterCell: UITableViewCell {
     @IBOutlet weak var retweetLabel: UILabel!
     @IBOutlet weak var favoriteLabel: UILabel!
     
+    var tweetID: Int = 0
+    
     var tweet: Tweet!
     {
         didSet
@@ -30,23 +32,33 @@ class TwitterCell: UITableViewCell {
             nameLabel.text = tweet.user!.name
             retweetLabel.text = "\((tweet.retweet_count)!)"
             favoriteLabel.text = "\((tweet.favorite_count)!)"
+            tweetID = (tweet.tweetID as? Int)!
             
             
         }
     }
     @IBAction func favoritePressed(sender: AnyObject)
     {
-        tweet.favorited = true
-        tweet.favorite_count! += 1
-        favoriteLabel.text = "\((tweet.favorite_count)!)"
-        favoriteButton.enabled = false
+        
+        TwitterClient.sharedInstance.favTweet(Int(tweetID), params: nil, completion: {(error) -> () in
+            
+        self.tweet.favorited = true
+        self.tweet.favorite_count! += 1
+        self.favoriteLabel.text = "\((self.tweet.favorite_count)!)"
+        self.favoriteButton.enabled = false
+            
+        })
     }
     @IBAction func retweetPressed(sender: AnyObject)
     {
-        tweet.retweeted = true
-        tweet.retweet_count! += 1
-        retweetLabel.text = "\((tweet.retweet_count)!)"
-        retweetButton.enabled = false
+        TwitterClient.sharedInstance.retweet(Int(tweetID), params: nil, completion: {(error) -> () in
+            
+        self.tweet.retweeted = true
+        self.tweet.retweet_count! += 1
+        self.retweetLabel.text = "\((self.tweet.retweet_count)!)"
+        self.retweetButton.enabled = false
+            
+        })
     }
     
     
@@ -68,5 +80,7 @@ class TwitterCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }
