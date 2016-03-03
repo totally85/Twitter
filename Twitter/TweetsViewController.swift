@@ -29,6 +29,15 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             self.tweets = tweets
             self.tableView.reloadData()
         })
+
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
+            self.tweets = tweets
+            self.tableView.reloadData()
+        })
+
     }
 
     override func didReceiveMemoryWarning() {

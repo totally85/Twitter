@@ -27,7 +27,6 @@ class TweetDetailViewController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
      
         tweetLabel.text = tweet.text
         timeLabel.text = tweet.createdAtString
