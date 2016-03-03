@@ -53,7 +53,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="TwitterCell" rowHeight="155" id="HBx-GS-nNh" customClass="TwitterCell" customModule="Twitter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="155"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="155"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="HBx-GS-nNh" id="HS7-v6-0Lo">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="154"/>
@@ -237,15 +237,18 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qK-cn-YKI">
-                                <rect key="frame" x="20" y="204" width="30" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
-                                <state key="normal" title="Reply"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vfz-Nt-eLt">
                                 <rect key="frame" x="15" y="94" width="80" height="82"/>
                                 <connections>
                                     <segue destination="IVi-tW-bic" kind="push" identifier="profile" id="9xQ-SN-V29"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qK-cn-YKI">
+                                <rect key="frame" x="20" y="204" width="30" height="22"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                <state key="normal" title="Reply"/>
+                                <connections>
+                                    <segue destination="tpI-9y-2LV" kind="push" identifier="replyTweet" id="hXX-QN-e5v"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -336,17 +339,20 @@
                                 <color key="textColor" red="0.39194711539999999" green="0.39194711539999999" blue="0.39194711539999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8BT-Ur-vea">
-                                <rect key="frame" x="19" y="313" width="66" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <state key="normal" title="Compose"/>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G99-N8-HbC">
                                 <rect key="frame" x="120" y="72" width="195" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8BT-Ur-vea">
+                                <rect key="frame" x="19" y="313" width="66" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <state key="normal" title="Compose"/>
+                                <connections>
+                                    <segue destination="tpI-9y-2LV" kind="push" identifier="composeTweet" id="6lF-wV-CLS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -383,18 +389,32 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bzz-3Z-eTu">
                                 <rect key="frame" x="233" y="232" width="49" height="30"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <segue destination="2am-ch-tsz" kind="push" identifier="goingBack" id="6W0-im-ZSA"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LSr-3y-g83">
+                                <rect key="frame" x="40" y="232" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                <color key="textColor" red="0.39194711539999999" green="0.39194711539999999" blue="0.39194711539999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fuQ-sf-GuO">
-                                <rect key="frame" x="40" y="67" width="240" height="157"/>
+                                <rect key="frame" x="40" y="91" width="240" height="133"/>
                                 <color key="backgroundColor" red="0.22514075720000001" green="0.66087194390000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.90261867081017466" green="0.93977900477184684" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Xmv-WF-WhU"/>
+                    <connections>
+                        <outlet property="characterCount" destination="LSr-3y-g83" id="Qwd-Qf-YGU"/>
+                        <outlet property="composeField" destination="fuQ-sf-GuO" id="aoX-IX-ODi"/>
+                        <outlet property="submitButton" destination="Bzz-3Z-eTu" id="XT6-tn-GSP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c7V-TE-Ggm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -419,4 +439,8 @@
             <point key="canvasLocation" x="803" y="407"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="6W0-im-ZSA"/>
+        <segue reference="6lF-wV-CLS"/>
+    </inferredMetricsTieBreakers>
 </document>

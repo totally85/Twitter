@@ -8,12 +8,28 @@
 
 import UIKit
 
-class ComposeViewController: UIViewController {
+class ComposeViewController: UIViewController, UITextViewDelegate {
+    
+    @IBOutlet weak var composeField: UITextView!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var characterCount: UILabel!
+    
+    
+    
+    var tweet: Tweet!
+    var count = 139
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.composeField.delegate = self
+       
+        
 
         // Do any additional setup after loading the view.
+        
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +37,17 @@ class ComposeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func textViewDidChange(textView: UITextView) {
+        
+        characterCount.text = ("\(count)")
+        --count
+        
+        if (count < 0)
+        {
+            composeField.userInteractionEnabled = false
+        }
+    }
+
 
     /*
     // MARK: - Navigation

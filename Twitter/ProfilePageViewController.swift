@@ -32,18 +32,22 @@ class ProfilePageViewController: UIViewController {
         followingCount.text = "\((tweet.user!.following)!)"
         followersCount.text = "\((tweet.user!.followed_by)!)"
         usernameLabel.text = tweet.user!.screenname
-
-        
-        
-    
-
-
         // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if segue.identifier == "replyTweet"
+        {
+            let destinationViewController = segue.destinationViewController as! ComposeViewController
+            destinationViewController.tweet = tweet
+        }
+        
     }
     
 

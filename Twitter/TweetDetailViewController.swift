@@ -75,6 +75,11 @@ class TweetDetailViewController: UIViewController {
             let destinationViewController = segue.destinationViewController as! ProfilePageViewController
             destinationViewController.tweet = tweet
         }
+        if segue.identifier == "replyTweet"
+        {
+            let destinationViewController = segue.destinationViewController as! ComposeViewController
+            destinationViewController.tweet = tweet
+        }
         
     }
 
